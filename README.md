@@ -11,6 +11,7 @@ The current implementation focuses on a **nanocone / nanocomb–like geometry** 
 ## Features
 
 - C++17 / Geant4 simulation with:
+
   - configurable nanocone-panel geometry via JSON (`geometry.json`) or built-in defaults,
   - multithreaded event processing via `G4MTRunManager`,
   - custom geometry builder (`ConeCombBuilder`),
@@ -18,6 +19,7 @@ The current implementation focuses on a **nanocone / nanocomb–like geometry** 
   - ROOT-based histogramming of ionization / capture events.
 
 - Python tools to:
+
   - generate / sweep geometries (`grid_sweep/`, `sweep_results/`),
   - analyze ionization and capture statistics,
   - post-process event TSVs and ROOT files into figures.
@@ -43,18 +45,18 @@ vis.mac                 # Visualization macro
 
 Key C++ components:
 
-- `src/main.cc` – entry point, CLI, geometry loading, interactive/batch modes  
-- `DetectorConstruction` – world volume and nanocone panels  
-- `PhysicsList` – EM physics + μ–α step-limiter  
-- User actions (`ActionInitialization`, `RunAction`, `EventAction`, `SteppingAction`)  
-- `GeometryConfig` – JSON-serializable geometry description (panel layouts)  
+- `src/main.cc` – entry point, CLI, geometry loading, interactive/batch modes
+- `DetectorConstruction` – world volume and nanocone panels
+- `PhysicsList` – EM physics + μ–α step-limiter
+- User actions (`ActionInitialization`, `RunAction`, `EventAction`, `SteppingAction`)
+- `GeometryConfig` – JSON-serializable geometry description (panel layouts)
 
 Python:
 
-- `grid_sweep.py` – orchestrates large parameter sweeps  
-- `grid_sweep/analyze_grid.py` – aggregates run results into CSVs and plots  
-- `ionization_histograms.py` – histogram utilities  
-- `muonic_atom/*` – Dirac solvers + radial distribution tools  
+- `grid_sweep.py` – orchestrates large parameter sweeps
+- `grid_sweep/analyze_grid.py` – aggregates run results into CSVs and plots
+- `ionization_histograms.py` – histogram utilities
+- `muonic_atom/*` – Dirac solvers + radial distribution tools
 
 ---
 
@@ -129,8 +131,8 @@ Using an explicit geometry file:
 
 Outputs are stored in:
 
-- `output/root/*.root`  
-- `output/events/*.tsv`  
+- `output/root/*.root`
+- `output/events/*.tsv`
 - `results/YYYYMMDDThhmmss/` (run summaries)
 
 ---
@@ -148,10 +150,10 @@ python grid_sweep/analyze_grid.py
 
 This generates:
 
-- ionization fractions   
-- capture fractions  
-- ranked configuration tables  
-- plots under `grid_sweep/`  
+- ionization fractions
+- capture fractions
+- ranked configuration tables
+- plots under `grid_sweep/`
 
 ---
 
@@ -169,17 +171,21 @@ Used to validate and provide parameters for the Geant4 model.
 
 ## Figures
 
-A representative screenshot of the simulation will be kept under:
+A representative screenshot of the μ–α simulation is shown below:
 
-```
-docs/figures/nanocone_hit_pattern.png
-```
-
-Embed it here once added:
-
-```markdown
 ![Muon-alpha trajectories through nanocone panels](docs/figures/nanocone_hit_pattern.png)
-```
+
+Example output summary from a 1000-event run:
+
+    ============ Global Event Summary ============
+         Number of events in this run : 1000
+         Total Captures               : 9
+         Total Ionizations            : 930
+         Ionization Fraction (%)      : 93  ± 0.806846
+         Capture    Fraction (%)      : 0.9  ± 0.298647
+         Ionization / Capture Ratio   : 103.333
+        ==============================================
+
 
 ---
 
@@ -193,6 +199,7 @@ Embed it here once added:
 - Results can be regenerated using the sweep and analysis scripts.
 
 ---
+
 ## License and Publication Use
 
 This code is provided for research transparency, but **it is not licensed for
