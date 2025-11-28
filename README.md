@@ -177,13 +177,14 @@ A representative screenshot of the μ–α simulation is shown below:
 
 Example output summary from a 1000-event run:
 
+```text
 ============ Global Event Summary ============
-Number of events in this run : 1000
-Total Captures : 9
-Total Ionizations : 930
-Ionization Fraction (%) : 93 ± 0.806846
-Capture Fraction (%) : 0.9 ± 0.298647
-Ionization / Capture Ratio : 103.333
+   Number of events in this run : 1000
+   Total Captures               : 9
+   Total Ionizations            : 930
+   Ionization Fraction (%)      : 93  ± 0.806846
+   Capture    Fraction (%)      : 0.9  ± 0.298647
+   Ionization / Capture Ratio   : 103.333
 ==============================================
 
 ---
@@ -191,9 +192,11 @@ Ionization / Capture Ratio : 103.333
 ## Reproducibility Notes
 
 - Add a custom seed in `vis.mac` (if desired):
-  ```
-  /random/setSeeds N1 N2
-  ```
+```
+
+/random/setSeeds N1 N2
+
+```
 - JSON geometries, event TSVs, and ROOT files are typically not tracked in Git due to size.
 - Results can be regenerated using the sweep and analysis scripts.
 
@@ -207,7 +210,7 @@ explicit written permission from the author**.
 
 To request permission for any publication-related use, please contact:
 
-**Mohammadreza Zakeri (Zaki)**  
+**Mohammadreza Zakeri (Zaki)**
 **Email:** m.zakeri@eku.edu
 
 Unauthorized scientific use, including derivative work used in papers or reports,
@@ -220,7 +223,8 @@ provided once it becomes available.
 
 ## Contact
 
-**Author:** Mohammadreza Zakeri (Zaki)  
+**Author:** Mohammadreza Zakeri (Zaki)
 **Email:** m.zakeri@eku.edu
 
 Issues and contributions welcome.
+```
