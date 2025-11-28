@@ -177,15 +177,14 @@ A representative screenshot of the μ–α simulation is shown below:
 
 Example output summary from a 1000-event run:
 
-    ============ Global Event Summary ============
-         Number of events in this run : 1000
-         Total Captures               : 9
-         Total Ionizations            : 930
-         Ionization Fraction (%)      : 93  ± 0.806846
-         Capture    Fraction (%)      : 0.9  ± 0.298647
-         Ionization / Capture Ratio   : 103.333
-        ==============================================
-
+============ Global Event Summary ============
+Number of events in this run : 1000
+Total Captures : 9
+Total Ionizations : 930
+Ionization Fraction (%) : 93 ± 0.806846
+Capture Fraction (%) : 0.9 ± 0.298647
+Ionization / Capture Ratio : 103.333
+==============================================
 
 ---
 

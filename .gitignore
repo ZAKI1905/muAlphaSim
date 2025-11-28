@@ -38,7 +38,7 @@ sweep_results/*/results/
 *.root
 *.tsv
 *.csv
-*.jpg
+# *.jpg
 *.jpeg
 *.png
 *.eps
