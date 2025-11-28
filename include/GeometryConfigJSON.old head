@@ -1,0 +1,73 @@
+// GeometryConfigJSON.hh  – ONLY the helper functions.
+// Requires nlohmann/json (already shipped with Geant4 examples).
+
+#include <nlohmann/json.hpp>
+#include "GeometryConfig.hh"     // your struct definitions
+
+namespace geom {
+
+// ─────────────────────────────────  elementary vector ───
+inline void to_json(nlohmann::json& j, const Vec3& v)
+{ j = { v.x_nm, v.y_nm, v.z_nm }; }
+
+inline void from_json(const nlohmann::json& j, Vec3& v)
+{
+    v.x_nm = j.at(0).get<double>();
+    v.y_nm = j.at(1).get<double>();
+    v.z_nm = j.at(2).get<double>();
+}
+
+// ─────────────────────────────────  ConeSpec ─────────────
+inline void to_json(nlohmann::json& j, const ConeSpec& c)
+{
+    j = { {"r_tip_nm",  c.r_tip_nm},
+          {"r_base_nm", c.r_base_nm},
+          {"h_cone_nm", c.h_cone_nm} };
+}
+
+inline void from_json(const nlohmann::json& j, ConeSpec& c)
+{
+    j.at("r_tip_nm" ).get_to(c.r_tip_nm );
+    j.at("r_base_nm").get_to(c.r_base_nm);
+    j.at("h_cone_nm").get_to(c.h_cone_nm);
+}
+
+// ─────────────────────────────────  PanelSpec ────────────
+inline void to_json(nlohmann::json& j, const PanelSpec& p)
+{
+    j = { {"nx",        p.nx},
+          {"ny",        p.ny},
+          {"pitch_nm",  p.pitch_nm},
+          {"x0_nm",     p.x0_nm},
+          {"offset_nm", p.offset_nm} };
+}
+
+inline void from_json(const nlohmann::json& j, PanelSpec& p)
+{
+    j.at("nx"       ).get_to(p.nx);
+    j.at("ny"       ).get_to(p.ny);
+    j.at("pitch_nm" ).get_to(p.pitch_nm);
+    j.at("x0_nm"    ).get_to(p.x0_nm);
+    j.at("offset_nm").get_to(p.offset_nm);
+}
+
+// ─────────────────────────────────  GeometryConfig ───────
+inline void to_json(nlohmann::json& j, const GeometryConfig& g)
+{
+    j = { {"cone",      g.cone},
+          {"gap_nm",    g.gap_nm},
+          {"r_middle_nm", g.r_middle_nm},
+          {"r_outer_nm",  g.r_outer_nm},
+          {"panels",    g.panels} };
+}
+
+inline void from_json(const nlohmann::json& j, GeometryConfig& g)
+{
+    j.at("cone"      ).get_to(g.cone);
+    j.at("gap_nm"    ).get_to(g.gap_nm);
+    j.at("r_middle_nm").get_to(g.r_middle_nm);
+    j.at("r_outer_nm" ).get_to(g.r_outer_nm);
+    j.at("panels"    ).get_to(g.panels);
+}
+
+} // namespace geom

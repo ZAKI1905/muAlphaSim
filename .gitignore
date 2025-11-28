@@ -1,0 +1,50 @@
+# Build artifacts
+/build/
+/CMakeFiles/
+/CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.o
+*.obj
+*.exe
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+
+# IDE files
+.vscode/
+.idea/
+*.code-workspace
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.ipynb_checkpoints/
+
+# Output and results
+output/
+results/
+grid_sweep/*/results/
+sweep_results/*/results/
+*.root
+*.tsv
+*.csv
+*.jpg
+*.jpeg
+*.png
+*.eps
+
+# Archives
+*.zip
+
+# Misc
+logs/

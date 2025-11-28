@@ -1,0 +1,23 @@
+{
+  "cone": {
+    "r_tip_nm": 0.5,
+    "r_base_nm": 10,
+    "h_cone_nm": 1000
+  },
+  "gap_nm": 50,
+  "r_middle_nm": 60,
+  "r_outer_nm": 75,
+  "panels": [
+    {
+      "nx": 2,
+      "ny": 4,
+      "pitch_nm": 150.0,
+      "x0_nm": 0.0,
+      "offset_nm": [
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

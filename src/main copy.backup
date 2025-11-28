@@ -1,0 +1,155 @@
+// ============================================================================
+//  Project : muAlphaSim – Muon-Alpha State Propagation and Stripping
+//  File    : main.cc  (updated 2025-06-01)
+//  Purpose : Entry point; instantiates detector, physics, user actions,
+//            and launches either interactive or batch mode.
+//
+//  Author  : Mohammadreza Zakeri (Zaki)
+//  Email   : m.zakeri@eku.edu
+// ============================================================================
+
+#include "G4MTRunManager.hh"
+#include "G4UIExecutive.hh"
+#include "G4UImanager.hh"
+#include "G4VisExecutive.hh"
+
+#include "QGSP_BERT.hh"
+
+#include "DetectorConstruction.hh"
+#include "GeometryConfig.hh" 
+#include "PhysicsList.hh"
+#include "ActionInitialization.hh"
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Helper – build a very small default GeometryConfig so code compiles even
+//           before you wire up the JSON / macro loader.
+// ─────────────────────────────────────────────────────────────────────────────
+static geom::GeometryConfig makeDefaultConfig()
+{
+  using namespace geom;
+
+  GeometryConfig cfg;
+
+  // One “standard” 5×5 panel at x = 0
+  PanelSpec p0;
+  p0.nx        = 1;
+  p0.ny        = 1;
+  p0.pitch_nm  = 150.0;
+  p0.x0_nm     =   0.0;
+  cfg.panels.push_back(p0);
+
+  // Second panel 1 µm downstream, 1.5× pitch
+//   PanelSpec p1 = p0;
+//   p1.pitch_nm  = 225.0;
+//   p1.x0_nm     = 1000.0;
+//   cfg.panels.push_back(p1);
+
+  return cfg;
+}
+
+// ────────────────── very-lightweight CLI parser ──────────────────
+struct Cli 
+{
+    std::string cfgPath;     // --cfg=path/to/json
+    int         nEvents = 100;  // --nevents=N (default 100)
+};
+
+static Cli parse_cli(int argc, char** argv)
+{
+    Cli out;
+    for (int i = 1; i < argc; ++i)
+    {
+        std::string a(argv[i]);
+        if (a.rfind("--cfg=",0) == 0)
+            out.cfgPath = a.substr(6);
+        else if (a.rfind("--nevents=",0) == 0)
+            out.nEvents = std::stoi(a.substr(10));
+    }
+    return out;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  main()
+// ─────────────────────────────────────────────────────────────────────────────
+int main(int argc, char** argv)
+{
+    
+    // ------------------------------------------------ CLI ------------
+    Cli cli = parse_cli(argc, argv);
+
+    // ------------------------------------------------ UI or batch ----
+    G4UIExecutive* ui = (argc == 1) ? new G4UIExecutive(argc, argv) : nullptr;
+
+    //------------------------------------------------------------------
+    //  GeometryConfig : default or load-from-JSON
+    //------------------------------------------------------------------
+    geom::GeometryConfig cfg   = makeDefaultConfig();
+    if (!cli.cfgPath.empty())
+    {
+        std::ifstream fp(cli.cfgPath);
+        if (!fp) { G4Exception("main","BadCfg",FatalException,
+                               ("Cannot open "+cli.cfgPath).c_str()); }
+        fp >> cfg;                      // relies on nlohmann::json ⇆ struct
+    }
+
+    // -------------------------------------------------------------------------
+    //  UI Mode Detection
+    // -------------------------------------------------------------------------
+    G4UIExecutive* ui = (argc == 1) ? new G4UIExecutive(argc, argv) : nullptr;
+
+    // -------------------------------------------------------------------------
+    //  Run-manager (multithreaded)
+    // -------------------------------------------------------------------------
+    auto runManager = new G4MTRunManager;
+
+    unsigned hw = std::thread::hardware_concurrency();
+    unsigned nThreads = 8;          // override if desired
+    runManager->SetNumberOfThreads(nThreads);
+
+    G4cout << "Running on " << nThreads << " threads ("
+            << hw << " hardware threads available)\n";
+
+    // -------------------------------------------------------------------------
+    //  Detector and physics initialisation
+    // -------------------------------------------------------------------------
+    geom::GeometryConfig cfg = makeDefaultConfig();       // build / load config
+    auto* det = new DetectorConstruction(cfg);            // <- pass cfg here
+    G4cout << "CONFIG IN MAIN HAS " << cfg.panels.size() << " panels\n";
+
+    runManager->SetUserInitialization(det);
+
+    runManager->SetUserInitialization(new PhysicsList);
+    runManager->SetUserInitialization(new ActionInitialization(det, cfg));
+
+    runManager->Initialize();
+
+    // -------------------------------------------------------------------------
+    //  Visualisation
+    // -------------------------------------------------------------------------
+    auto* visManager = new G4VisExecutive;
+    visManager->Initialize();
+
+    auto* UImanager = G4UImanager::GetUIpointer();
+
+    // -------------------------------------------------------------------------
+    //  Interactive or Batch
+    // -------------------------------------------------------------------------
+    if (ui != nullptr)
+    {
+      UImanager->ApplyCommand("/control/execute vis.mac");
+      ui->SessionStart();
+      delete ui;
+    }
+    else
+    {
+      UImanager->ApplyCommand("/run/beamOn 100");
+    }
+
+    // -------------------------------------------------------------------------
+    //  Cleanup
+    // -------------------------------------------------------------------------
+    delete visManager;
+    delete runManager;
+
+    return 0;
+}

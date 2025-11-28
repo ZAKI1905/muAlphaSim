@@ -1,0 +1,133 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3542,        123]
+NotebookOptionsPosition[      2600,         97]
+NotebookOutlinePosition[      3026,        114]
+CellTagsIndexPosition[      2983,        111]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"1", "-", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "-", "0.0357"}], ")"}], "n"]}], "/.", 
+   RowBox[{"n", "->", " ", "100"}]}], "//", "PercentForm"}]], "Input",
+ CellChangeTimes->{{3.957539139794351*^9, 3.957539208587278*^9}, 
+   3.9575566552856913`*^9},
+ CellLabel->"In[17]:=",ExpressionUUID->"4249eaa8-151b-4790-840b-11ef96887d00"],
+
+Cell[BoxData[
+ TagBox[
+  InterpretationBox[
+   StyleBox["\<\"97.36%\"\>",
+    ShowStringCharacters->False],
+   0.9736235298005401,
+   AutoDelete->True],
+  PercentForm]], "Output",
+ CellChangeTimes->{{3.9575391712695*^9, 3.957539208954138*^9}, 
+   3.9575566555077477`*^9},
+ CellLabel->
+  "Out[17]//PercentForm=",ExpressionUUID->"49f79868-5278-4135-9fd3-\
+7216b21e976c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"357", "/", "10000"}], "//", "N"}], "//", "PercentForm"}]], "Input",\
+
+ CellChangeTimes->{{3.957556615053955*^9, 3.95755664214349*^9}},
+ CellLabel->"In[16]:=",ExpressionUUID->"909df6e9-5503-4dbe-bb67-b1dd2ac11fcc"],
+
+Cell[BoxData[
+ TagBox[
+  InterpretationBox[
+   StyleBox["\<\"3.57%\"\>",
+    ShowStringCharacters->False],
+   0.0357,
+   AutoDelete->True],
+  PercentForm]], "Output",
+ CellChangeTimes->{{3.95755663248703*^9, 3.9575566426694603`*^9}},
+ CellLabel->
+  "Out[16]//PercentForm=",ExpressionUUID->"fe6ffa3e-5b1c-414e-998b-\
+505f0da514cb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"434", "/", "10000"}], "//", "N"}], "//", "PercentForm"}]], "Input",\
+
+ CellChangeTimes->{{3.957569186501316*^9, 3.957569186751783*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"b295b499-2eac-4af5-bae3-3c77f78e298e"],
+
+Cell[BoxData[
+ TagBox[
+  InterpretationBox[
+   StyleBox["\<\"4.34%\"\>",
+    ShowStringCharacters->False],
+   0.0434,
+   AutoDelete->True],
+  PercentForm]], "Output",
+ CellChangeTimes->{3.957569187267231*^9},
+ CellLabel->
+  "Out[18]//PercentForm=",ExpressionUUID->"e2904ebd-50fc-4d32-9200-\
+cbc197f42381"]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{Automatic, 324}, {0, Automatic}},
+Magnification:>2. Inherited,
+FrontEndVersion->"14.0 for Mac OS X ARM (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"aea0f66f-5c34-4da6-a4b8-d5cb238f58df"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 397, 10, 59, "Input",ExpressionUUID->"4249eaa8-151b-4790-840b-11ef96887d00"],
+Cell[980, 34, 368, 12, 95, "Output",ExpressionUUID->"49f79868-5278-4135-9fd3-7216b21e976c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1385, 51, 260, 6, 59, "Input",ExpressionUUID->"909df6e9-5503-4dbe-bb67-b1dd2ac11fcc"],
+Cell[1648, 59, 330, 11, 95, "Output",ExpressionUUID->"fe6ffa3e-5b1c-414e-998b-505f0da514cb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2015, 75, 261, 6, 59, "Input",ExpressionUUID->"b295b499-2eac-4af5-bae3-3c77f78e298e"],
+Cell[2279, 83, 305, 11, 106, "Output",ExpressionUUID->"e2904ebd-50fc-4d32-9200-cbc197f42381"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
