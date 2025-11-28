@@ -186,17 +186,20 @@ Example output summary from a 1000-event run:
    Capture    Fraction (%)      : 0.9  ± 0.298647
    Ionization / Capture Ratio   : 103.333
 ==============================================
+```
 
 ---
 
 ## Reproducibility Notes
 
 - Add a custom seed in `vis.mac` (if desired):
+
 ```
 
 /random/setSeeds N1 N2
 
 ```
+
 - JSON geometries, event TSVs, and ROOT files are typically not tracked in Git due to size.
 - Results can be regenerated using the sweep and analysis scripts.
 
@@ -227,4 +230,7 @@ provided once it becomes available.
 **Email:** m.zakeri@eku.edu
 
 Issues and contributions welcome.
+
+```
+
 ```
