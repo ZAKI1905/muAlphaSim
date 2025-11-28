@@ -173,7 +173,7 @@ Used to validate and provide parameters for the Geant4 model.
 
 A representative screenshot of the μ–α simulation is shown below:
 
-![Muon-alpha trajectories through nanocone panels](docs/figures/nanocone_hit_pattern.png)
+![Muon-alpha trajectories through nanocone panels](docs/figures/nanocone_hit_pattern.jpg)
 
 Example output summary from a 1000-event run:
 
